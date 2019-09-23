@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
+        <title>Blog</title>
+
+    </head>
+
+    <body class="blog_version">
+
+
+        <!--================ Start Banner Area =================-->
+        <section class="banner_area">
+            <div class="banner_inner d-flex align-items-center">
+                <div class="container">
+                    <div class="banner_content text-center">
+                        <h2>Blog</h2>
+                        <div class="page_link">
+                            <a href="{% url 'index' %}">Home</a>
+                            <a href="{% url 'blog_index' %}">Our Blog</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================ End Banner Area =================-->
+
+        <!--================Blog Categorie Area =================-->
+
+        <section class="blog_categorie_area section_gap_top">
+            <div class="container">
+                <div class="row">
+                    {% for post in latest %}
+                    <div class="col-lg-4">
+                        <div class="categories_post">
+                            <img src="{{ post.image.url }}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+
+
+
+                                    <a href="single-blog.html">
+                                        <h5></h5>
+                                    </a>
+                                    <div class="border_line"></div>
+                                    <p>{{ post.Title }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!--================Blog Categorie Area =================-->
+
+        <!--================Blog Area =================-->
+
+        <section class="blog_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="blog_left_sidebar">
+                            {% for blog in blog %}
+
+
+
+                            <article class="row blog_item">
+                                <div class="col-md-3">
+                                    <div class="blog_info text-right">
+                                        <div class="post_tag">
+                                            <a href="#">{{ blog.Title }},</a>
+                                            <a class="active" href="#">Technology,</a>
+                                            <a href="#">Politics,</a>
+                                            <a href="#">Lifestyle</a>
+                                        </div>
+                                        <ul class="blog_meta list">
+                                            <li><a href="#">{{ blog.Author }}<i class="lnr lnr-user"></i></a></li>
+                                            <li><a href="#">{{ blog.post_date |timesince }}<i
+                                                        class="lnr lnr-calendar-full"></i></a></li>
+                                            <li><a href="#">{{ blog.view_count }}<i class="lnr lnr-eye"></i></a></li>
+                                            <li><a href="#">{{ blog.comment_count }}<i class="lnr lnr-bubble"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="blog_post">
+                                        <img src="{{ blog.image.url }}" alt="">
+                                        <div class="blog_details">
+{#                                            <a href="{% url ''  %}">#}
+                                                <h2>{{ post.Title }}</h2>
+                                            </a>
+                                            <p>{{ blog.Description| truncatechars:200}}</p>
+                                            <a href="#" class="primary_btn"><span>View
+                                                    More</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            {% endfor %}
+
+
+                            <nav class="blog-pagination justify-content-center d-flex">
+                                {% if queryset.has_prevoius  %}
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a href="?{{ page_request_var }}={{ paginated_queryset.previous_page_number}}"
+                                            class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">
+                                                <span class="lnr lnr-chevron-left"></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+
+                                    <li class="page-item">
+                                        {% if queryset.has_next %}
+                                        <a href="?{{ page_request_var }}={{ paginated_queryset.previous_page_number}}"
+                                            class="page-link" aria-label="Next">
+                                            <span aria-hidden="true">
+                                                <span class="lnr lnr-chevron-right"></span>
+                                            </span>
+                                            {% endif %}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="blog_right_sidebar">
+                            <aside class="single_sidebar_widget search_widget">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search Posts">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><i
+                                                class="lnr lnr-magnifier"></i></button>
+                                    </span>
+                                </div><!-- /input-group -->
+                                <div class="br"></div>
+                            </aside>
+                            <aside class="single_sidebar_widget author_widget">
+                                <img class="author_img rounded-circle" src="img/blog/author.png" alt="">
+                                <h4>Charlie Barber</h4>
+                                <p>Senior blog writer</p>
+                                <div class="social_icon">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-github"></i></a>
+                                    <a href="#"><i class="fa fa-behance"></i></a>
+                                </div>
+                                <p>Boot camps have its supporters andit sdetractors. Some people do not understand why
+                                    you should have to spend money on boot camp when you can get. Boot camps have
+                                    itssuppor ters andits detractors.</p>
+                                <div class="br"></div>
+                            </aside>
+
+
+                            <aside class="single_sidebar_widget popular_post_widget">
+                                <h3 class="widget_title">Popular Posts</h3>
+
+                                {% for post in blog %}
+                                <div class="media post_item">
+                                    <img src="{{ post.image.url }}" alt="post">
+                                    <div class="media-body">
+{#                                        <a href="{% url 'blog_single' post.pk %}">#}
+                                            <h3>{{ post.Title}}</h3>
+                                        </a>
+                                        <p>{{post.post_date| timesince}}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <div class="br"></div>
+                            </aside>
+                            <aside class="single_sidebar_widget ads_widget">
+                                <a href="#"><img class="img-fluid" src="img/blog/add.jpg" alt=""></a>
+                                <div class="br"></div>
+                            </aside>
+                            <aside class="single_sidebar_widget post_category_widget">
+                                <h4 class="widget_title">Post Catgories</h4>
+                                <ul class="list cat-list">
+                                    {% for cat in tag_count  %}
+
+                                    <li>
+                                        <a href="#" class="d-flex justify-content-between">
+                                            <p>{{cat.Tag__Tag}}</p>
+                                            <p>{{cat.Tag__Tag__count}}</p>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                <div class="br"></div>
+                            </aside>
+                            <aside class="single-sidebar-widget newsletter_widget">
+                                <h4 class="widget_title">Newsletter</h4>
+                                <p>
+                                    Here, I focus on a range of items and features that we use in life without
+                                    giving them a second thought.
+                                </p>
+                                <div class="form-group d-flex flex-row">
+                                    <div class="input-group">
+                                        <form action="." method="POST">
+                                            {% csrf_token %}
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fa fa-envelope"
+                                                        aria-hidden="true"></i></div>
+                                            </div>
+                                            <input type="text" class="form-control" name="email" id="email"
+                                                id="inlineFormInputGroup" placeholder="Enter email"
+                                                onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'Enter email'">
+
+
+                                            <button type="submit" class="bbtns">Subcribe</button>
+                                    </div>
+                                </form>
+                                    </div>
+                                    <p class="text-bottom">You can unsubscribe at any time</p>
+                                    <div class="br"></div>
+                            </aside>
+                            <aside class="single-sidebar-widget tag_cloud_widget">
+                                <h4 class="widget_title">Tag Clouds</h4>
+                                <ul class="list">
+                                    <li><a href="#">Technology</a></li>
+                                    <li><a href="#">Fashion</a></li>
+                                    <li><a href="#">Architecture</a></li>
+                                    <li><a href="#">Fashion</a></li>
+                                    <li><a href="#">Food</a></li>
+                                    <li><a href="#">Technology</a></li>
+                                    <li><a href="#">Lifestyle</a></li>
+                                    <li><a href="#">Art</a></li>
+                                    <li><a href="#">Adventure</a></li>
+                                    <li><a href="#">Food</a></li>
+                                    <li><a href="#">Lifestyle</a></li>
+                                    <li><a href="#">Adventure</a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================Blog Area =================-->
+
+
+
+    </body>
+
+</html>
+
+{% endblock content%}
