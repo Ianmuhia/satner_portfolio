@@ -119,7 +119,7 @@ pytest-django==3.3.3
 python-dateutil==2.7.5
 python3-openid==3.1.0
 pytz==2018.5
-PyYAML==5.1.2
+PyYAML==5.4
 redis==3.2.1
 reportlab==3.5.23
 requests==2.22.0
