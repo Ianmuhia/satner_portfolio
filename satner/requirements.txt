@@ -83,7 +83,7 @@ mock==2.0.0
 model-mommy==1.6.0
 more-itertools==4.3.0
 murmurhash==1.0.2
-nltk==3.4.4
+nltk==3.6.6
 numpy==1.17.0
 oauthlib==2.0.1
 packaging==16.8
